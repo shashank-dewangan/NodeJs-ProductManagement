@@ -4,6 +4,7 @@ var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
 var productRoutes = require("./routes/product.routes");
 var reviewRoutes = require('./routes/review.route');
+var userRoutes = require('./routes/user.route');
 
 mongoose.connect(
   "mongodb://localhost:27017/MyProductDB",
@@ -20,3 +21,4 @@ app.use(
 app.use(bodyParser.json());
 app.use("/api/products", productRoutes);
 app.use("/api/reviews", reviewRoutes);
+app.use("/api/users", userRoutes);
