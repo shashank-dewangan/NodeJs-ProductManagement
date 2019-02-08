@@ -2,6 +2,7 @@ var User = require('../model/user.model')
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 var config = require('../utilities/config')
+var logger = require('../utilities/logger')
 
 module.exports = {
     signup: (req, res) => {
@@ -27,15 +28,18 @@ module.exports = {
                 var token = jwt.sign({ username: req.body.username }, config.password, { expiresIn: config.expireTime });
                 var response = { username: req.body.username, token: token };
                 res.status(201)
+                logger.info(response)
                 res.send(response)
             }
             else {
                 res.status(401)
+                logger.error({error: "Unauthorized"})
                 res.json("Unauthorised")
             }
         }
         ).catch((err) => {
             res.status(401)
+            logger.error({error: "Unauthorized", err})
             res.json("Unauthorised")
         })
 

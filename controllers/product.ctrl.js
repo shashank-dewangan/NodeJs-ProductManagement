@@ -1,32 +1,8 @@
 var Product = require("../model/Product.model");
 var Review = require("../model/review.model");
+
 module.exports = {
-  //   getByPage: (req, res) => {
-  //     var pageSize = +req.params.pageSize;
-  //     var pageIndex = +req.params.pageIndex - 1;
-  //     var count = 0;
-  //     Product.count()
-  //       .then(cnt => {
-  //         count = cnt;
-  //         var query = Product.find({}, { __v: 0 })
-  //           .skip(pageIndex * pageSize)
-  //           .limit(pageSize)
-  //           .sort("-lastUpdated");
-  //         return query.exec();
-  //       })
-  //       .then(products => {
-  //         res.status(200);
-  //         res.json({
-  //           metadata: {
-  //             count: count,
-  //             pageSize: pageSize,
-  //             totalPages: Math.ceil(count / pageSize)
-  //           },
-  //           data: products
-  //         });
-  //       })
-  //       .catch(err => console.log("error", err));
-  //   },
+  
   getByPage: async (req, res) => {
     var pageSize = +req.params.pageSize;
     var pageIndex = +req.params.pageIndex - 1;
