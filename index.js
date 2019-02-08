@@ -6,15 +6,16 @@ var productRoutes = require("./routes/product.routes");
 var reviewRoutes = require('./routes/review.route');
 var userRoutes = require('./routes/user.route');
 var isAuthenticated = require('./utilities/Authentication')
+var config = require('./utilities/config')
 mongoose.connect(
-  "mongodb://localhost:27017/MyProductDB",
+  config.localConnectionString,
   {
     useNewUrlParser: true,
     useCreateIndex: true,
   }
 );
-
-app.listen(2000, () => console.log("server is running"))
+var port = process.env.PORT || 2000
+app.listen(port, () => console.log("server is running at post " + port))
 
 app.use(
   bodyParser.urlencoded({
